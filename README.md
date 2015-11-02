@@ -23,7 +23,7 @@ var tx, ty = mercator.LatLonToTile(lat, lon, z)
 
 fmt.Printf("Meters: %f, %f\n", x, y)
 fmt.Printf("Lat Lon: %f, %f\n", lat, lon)
-fmt.Printf("Pixels: %f, %f\n", px, py)
-fmt.Printf("Tile: %d, %d\n", tx, ty)
+fmt.Printf("Pixels (zoom %d): %f, %f\n", z, px, py)
+fmt.Printf("Tile (zoom %d): %d, %d\n", z, tx, ty)
 ```
 
