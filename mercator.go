@@ -27,45 +27,45 @@ func Zoom(resolution float64) int {
 }
 
 // LatLonToMeters converts given lat/lon in WGS84 Datum to XY in Spherical Mercator EPSG:900913
-func LatLonToMeters(lat, lon float64) (x, y float64) {
-	x = lon * originShift / 180
-	y = math.Log(math.Tan((90+lat)*math.Pi/360)) / (math.Pi / 180)
+func LatLonToMeters(lat, lon float64) (float64, float64) {
+	x := lon * originShift / 180
+	y := math.Log(math.Tan((90+lat)*math.Pi/360)) / (math.Pi / 180)
 	y = y * originShift / 180
 	return x, y
 }
 
 // MetersToLatLon converts XY point from Spherical Mercator EPSG:900913 to lat/lon in WGS84 Datum
-func MetersToLatLon(mx, my float64) (lat, lon float64) {
-	lon = (mx / originShift) * 180
-	lat = (my / originShift) * 180
+func MetersToLatLon(mx, my float64) (float64, float64) {
+	lon := (mx / originShift) * 180
+	lat := (my / originShift) * 180
 	lat = 180 / math.Pi * (2*math.Atan(math.Exp(lat*math.Pi/180)) - math.Pi/2)
 	return lat, lon
 }
 
 // PixelsToMeters converts pixel coordinates in given zoom level of pyramid to EPSG:900913
-func PixelsToMeters(px, py float64, zoom int) (x, y float64) {
+func PixelsToMeters(px, py float64, zoom int) (float64, float64) {
 	res := Resolution(zoom)
-	x = px*res - originShift
-	y = py*res - originShift
+	x := px*res - originShift
+	y := py*res - originShift
 	return x, y
 }
 
 // MetersToPixels converts EPSG:900913 to pixel coordinates in given zoom level
-func MetersToPixels(x, y float64, zoom int) (px, py float64) {
+func MetersToPixels(x, y float64, zoom int) (float64, float64) {
 	res := Resolution(zoom)
-	px = (x + originShift) / res
-	py = (y + originShift) / res
+	px := (x + originShift) / res
+	py := (y + originShift) / res
 	return px, py
 }
 
 // LatLonToPixels converts given lat/lon in WGS84 Datum to pixel coordinates in given zoom level
-func LatLonToPixels(lat, lon float64, zoom int) (px, py float64) {
+func LatLonToPixels(lat, lon float64, zoom int) (float64, float64) {
 	x, y := LatLonToMeters(lat, lon)
 	return MetersToPixels(x, y, zoom)
 }
 
 // PixelsToLatLon converts pixel coordinates in given zoom level to lat/lon in WGS84 Datum
-func PixelsToLatLon(px, py float64, zoom int) (lat, lon float64) {
+func PixelsToLatLon(px, py float64, zoom int) (float64, float64) {
 	x, y := PixelsToMeters(px, py, zoom)
 	return MetersToLatLon(x, y)
 }
