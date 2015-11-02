@@ -1,4 +1,4 @@
-// Package mercator contains conversion tools for the Global Mercator coordinate system
+// Package mercator contains conversion tools for the Spherical Mercator coordinate system
 // See http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
 package mercator
 
