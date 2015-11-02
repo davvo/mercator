@@ -26,4 +26,5 @@ fmt.Printf("Lat Lon: %f, %f\n", lat, lon)
 fmt.Printf("Pixels (zoom %d): %f, %f\n", z, px, py)
 fmt.Printf("Tile (zoom %d): %d, %d\n", z, tx, ty)
 ```
-
+## Documentation
+https://godoc.org/github.com/davvo/mercator
