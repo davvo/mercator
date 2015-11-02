@@ -80,3 +80,9 @@ func MetersToTile(x, y float64, zoom int) (int, int) {
 	px, py := MetersToPixels(x, y, zoom)
 	return PixelsToTile(px, py)
 }
+
+// Returns tile for given lat/lon coordinates
+func LatLonToTile(lat, lon float64, zoom int) (int, int) {
+	px, py := LatLonToPixels(lat, lon, zoom)
+	return PixelsToTile(px, py)
+}

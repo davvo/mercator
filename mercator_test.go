@@ -98,3 +98,12 @@ func TestMetersToTile(t *testing.T) {
 		t.Errorf("MetersToTile(%f, %f, %d) == %d, %d, want %d, %d", x, y, zoom, tileX, tileY, expectedTileX, expectedTileY)
 	}
 }
+
+func TestLatLonToTile(t *testing.T) {
+	lat, lon, zoom := 62.3, 14.1, 15
+	expectedTileX, expectedTileY := 17667, 23686
+	tileX, tileY := LatLonToTile(lat, lon, zoom)
+	if tileX != expectedTileX || tileY != expectedTileY {
+		t.Errorf("LatLonToTile(%f, %f, %d) == %d, %d, want %d, %d", lat, lon, zoom, tileX, tileY, expectedTileX, expectedTileY)
+	}
+}
