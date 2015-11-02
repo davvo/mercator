@@ -21,9 +21,9 @@ var lat, lon = mercator.MetersToLatLon(x, y)
 var px, py = mercator.MetersToPixels(x, y, z)
 var tx, ty = mercator.LatLonToTile(lat, lon, z)
 
-fmt.Printf("Meters: %f, %f", x, y)
-fmt.Printf("Lat Lon: %f, %f", lat, lon)
-fmt.Printf("Pixels: %f, %f", px, py)
-fmt.Printf("Tile: %d, %d", tx, ty)
+fmt.Printf("Meters: %f, %f\n", x, y)
+fmt.Printf("Lat Lon: %f, %f\n", lat, lon)
+fmt.Printf("Pixels (zoom %d): %f, %f\n", z, px, py)
+fmt.Printf("Tile (zoom %d): %d, %d\n", z, tx, ty)
 ```
 
