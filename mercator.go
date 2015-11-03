@@ -4,9 +4,11 @@ package mercator
 
 import "math"
 
-var tileSize = 256.0
-var initialResolution = 2 * math.Pi * 6378137 / tileSize
-var originShift = 2 * math.Pi * 6378137 / 2
+const (
+	tileSize          = 256.0
+	initialResolution = 2 * math.Pi * 6378137 / tileSize
+	originShift       = 2 * math.Pi * 6378137 / 2
+)
 
 func round(a float64) float64 {
 	if a < 0 {
@@ -35,9 +37,9 @@ func LatLonToMeters(lat, lon float64) (float64, float64) {
 }
 
 // MetersToLatLon converts XY point from Spherical Mercator EPSG:900913 to lat/lon in WGS84 Datum
-func MetersToLatLon(mx, my float64) (float64, float64) {
-	lon := (mx / originShift) * 180
-	lat := (my / originShift) * 180
+func MetersToLatLon(x, y float64) (float64, float64) {
+	lon := (x / originShift) * 180
+	lat := (y / originShift) * 180
 	lat = 180 / math.Pi * (2*math.Atan(math.Exp(lat*math.Pi/180)) - math.Pi/2)
 	return lat, lon
 }
