@@ -2,7 +2,9 @@
 // See http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
 package mercator
 
-import "math"
+import (
+	"math"
+)
 
 const (
 	tileSize          = 256.0
@@ -30,8 +32,8 @@ func Zoom(resolution float64) int {
 
 // LatLonToMeters converts given lat/lon in WGS84 Datum to XY in Spherical Mercator EPSG:900913
 func LatLonToMeters(lat, lon float64) (float64, float64) {
-	x := lon * originShift / 180
-	y := math.Log(math.Tan((90+lat)*math.Pi/360)) / (math.Pi / 180)
+	x := lat * originShift / 180
+	y := math.Log(math.Tan((90+lon)*math.Pi/360)) / (math.Pi / 180)
 	y = y * originShift / 180
 	return x, y
 }
